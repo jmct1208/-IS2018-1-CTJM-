@@ -14,17 +14,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Clase que modela un marcador apartir de la tabla marcador
+ * Clase que modela un marcador a partir de la tabla marcador
  * @author jonathan
  */
 @Entity
 @Table(name="marcador")
 public class Marcador {
-    @Id@GeneratedValue(strategy =GenerationType.IDENTITY )
+    @Id@GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "idmarcador")
     private int marcador_id;
     
+    @Column(name = "nombreM")
+    private String nombreM;
+    
+    @Column(name = "latitud")
+    private double latitud;
+    
+    @Column(name = "longitud")
+    private double longitud;
+    
+    @Column(name = "descripcion")
+    private String descripcion;
+    
     //Aqui va tu codigo
+    public Marcador(){}
+    
+    public Marcador(int marcador, String nombreM, double latitud, 
+                    double longitud, String descripcion){
+        this.marcador_id = marcador;
+        this.nombreM = nombreM;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.descripcion = descripcion;
+    }
     
     /**Nos da el id del marcador
      * @return el id del marcador 
@@ -40,6 +62,34 @@ public class Marcador {
         this.marcador_id = marcador_id;
     }
     
+    public void setNombreM(String nombreM){
+        this.nombreM = nombreM;
+    }
     
-    //Aqui va tu codigo
+    public String getNombreM(){
+       return nombreM; 
+    }
+    
+    public void setLatitud(double latitud){
+        this.latitud = latitud;
+    }
+    
+    public double getLatitud(){
+        return this.latitud;
+    }
+
+    public void setLongitud(double longitud){
+        this.longitud = longitud;
+    }
+    
+    public double getLongitud(){
+        return this.longitud;
+    }
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
+    }
+    
+    public String getDescripcion(){
+        return this.descripcion;
+    }
 }

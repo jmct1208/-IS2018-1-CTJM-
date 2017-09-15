@@ -21,13 +21,12 @@ public class MarcadorDAO {
     private SessionFactory sessionFactory;
     
     /**
-     * Inicialisamos la sesion a la base de datos.
+     * Inicializamos la sesion a la base de datos.
      * @param sessionFactory 
      */
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-    
     
     /**
      * Guarda un marcador a la base de datos 
@@ -73,8 +72,30 @@ public class MarcadorDAO {
      * @param longitud
      * @return el marcador con la longitud y latitud dada.
      */
-    public Marcador getMarcador(double latitud,double longitud) {
-        //aqui va tu codigo
+    public Marcador getMarcador(double latitud, double longitud) {
+        Marcador m = null;
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String s = "FROM Marcador WHERE latitud = :lat AND longitud = :long";
+            Query query  = session.createQuery(s);
+            query.setParameter("long", longitud);
+            query.setParameter("lat", latitud);
+            m = (Marcador)query.uniqueResult();
+            tx.commit();
+        }
+        catch(Exception e)
+        {
+         if(tx!=null){
+             tx.rollback();
+         }
+         e.printStackTrace();
+        }
+        finally{
+        session.close();
+        }
+        return m;
     }
     
     /**

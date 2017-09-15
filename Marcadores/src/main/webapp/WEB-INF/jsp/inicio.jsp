@@ -46,7 +46,7 @@
                             <th>${m.latitud}</th>
                             <th>${m.longitud}</th>
                             <th>
-                                <form action="/Ejercicio1-Marcadores/actualizaM" method="GET">
+                                <form action="/Marcadores/actualizaM" method="GET">
                                     <input id="latitud" name="latitud" hidden="true" value="${m.latitud}">
                                     <input id="longitud" name="longitud" hidden="true" value="${m.longitud}">
                                     <button type="submit" class="btn btn-primary btn-lg active">Actualiza</button>
